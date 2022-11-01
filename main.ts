@@ -143,7 +143,6 @@ function switchPlayer () {
     }
 }
 function cpuPlaceBoat0 () {
-    makeBoatVisible(boatSpriteArrayP2[0])
     if (randint(0, 1) == 0) {
         grid.place(cursor, tiles.getTileLocation(randint(0, 8), randint(0, 6)))
         grid.place(boatSpriteArrayP2[0][0], grid.add(grid.getLocation(cursor), 0, 0))
@@ -681,7 +680,11 @@ let rotateFlag = ""
 let currentPlayer = ""
 let singlePlayerFlag = 0
 tiles.setCurrentTilemap(tilemap`level1`)
-singlePlayerFlag = 1
+if (game.ask("Single Player?", "Multiplayer?")) {
+    singlePlayerFlag = 1
+} else {
+    singlePlayerFlag = 0
+}
 currentPlayer = "Player1"
 initP1()
 initP2()
